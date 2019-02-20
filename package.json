@@ -3,11 +3,14 @@
   "description": "A sample TODO app using ReactJS and Redux",
   "version": "1.0.0",
   "private": true,
+  "homepage": "http://jonathanestabillo.github.io/react-redux-todo-app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-coverage": "react-scripts test --coverage && codecov"
+    "test-coverage": "react-scripts test --coverage && codecov",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "*.{json,css, md}": [
@@ -55,6 +58,7 @@
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
+    "gh-pages": "^2.0.1",
     "husky": "1.3.1",
     "jest-localstorage-mock": "2.4.0",
     "lint-staged": "8.1.4",
