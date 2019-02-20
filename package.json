@@ -3,7 +3,7 @@
   "description": "A sample TODO app using ReactJS and Redux",
   "version": "1.0.0",
   "private": true,
-  "homepage": "http://jonathanestabillo.github.io/react-redux-todo-app",
+  "homepage": "https://jonathanestabillo.github.io/react-redux-todo-app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
