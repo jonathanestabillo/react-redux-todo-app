@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import AppReducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
@@ -14,9 +15,10 @@ import './stylesheets/animations.css';
 
 import App from './containers/App';
 
+const composedEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true, traceLimit: 25 }) || compose;
+
 const store = createStore(
-  AppReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  AppReducer, composedEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(

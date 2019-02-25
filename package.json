@@ -41,6 +41,7 @@
     "@fortawesome/free-solid-svg-icons": "5.7.2",
     "@fortawesome/react-fontawesome": "0.1.4",
     "bootswatch": "4.3.1",
+    "faker": "^4.1.0",
     "prop-types": "15.7.2",
     "react": "16.8.2",
     "react-beautiful-dnd": "10.0.4",
@@ -48,6 +49,8 @@
     "react-redux": "6.0.1",
     "react-scripts": "2.1.5",
     "redux": "4.0.1",
+    "redux-thunk": "^2.3.0",
+    "txtgen": "^2.2.2",
     "uuid": "3.3.2"
   },
   "devDependencies": {
