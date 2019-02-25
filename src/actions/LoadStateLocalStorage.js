@@ -1,15 +1,27 @@
-import { LOCALSTORAGE_NAME, LOAD_STATE_LOCALSTORAGE } from '../constants';
+import { LOAD_STATE_LOCALSTORAGE } from '../constants';
+import fetch from '../mocks/fetch';
 
 export const LoadStateLocalStorage = () => {
   return (dispatch) => {
-    const localStorageState = JSON.parse(window.localStorage.getItem(LOCALSTORAGE_NAME));
+    fetch('./api/todoList').then((response) => {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' + response.status);
+        return;
+      }
 
-    (localStorageState) ? dispatch({ 
-      type: LOAD_STATE_LOCALSTORAGE, 
-      payload: localStorageState,
-    }) : dispatch({ 
-      type: LOAD_STATE_LOCALSTORAGE, 
-      payload: null,
+      // Examine the text in the response
+      response.json().then(function (data) {
+        if(data){
+          dispatch({
+            type: LOAD_STATE_LOCALSTORAGE,
+            payload: data,
+          });
+        }else{
+          throw new Error('There is a problem parsing the API result.');
+        }
+      });
+    }).catch((err) => {
+      console.log('Fetch Error :-S', err);
     });
   }
 }
