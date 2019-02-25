@@ -1,9 +1,7 @@
-import uuid from 'uuid/v1';
 import {
   LOAD_STATE_LOCALSTORAGE,
-  SAVE_STATE_LOCALSTORAGE
+  ADD_ITEM
 } from '../constants';
-import { ADD_ITEM } from '../actions/AddItem';
 import { CANCEL_EDIT_ITEM } from '../actions/CancelEditItem';
 import { DELETE_ITEM } from '../actions/DeleteItem';
 import { EDIT_ITEM } from '../actions/EditItem';
@@ -27,14 +25,7 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
     }
 
     case ADD_ITEM: {
-      const id = uuid();
-      const todoItem = {
-        value: action.payload.value,
-        id,
-        completed: false,
-      };
-
-      return { ...state, items: [...state.items, todoItem] };
+      return { ...state, items: [...state.items, action.payload] };
     }
 
     case CANCEL_EDIT_ITEM: {
