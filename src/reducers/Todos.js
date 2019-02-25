@@ -5,10 +5,9 @@ import {
   SELECT_EDIT_ITEM,
   CANCEL_EDIT_ITEM,
   DELETE_ITEM,
-  REORDER_ITEM
+  REORDER_ITEM,
+  ITEM_COMPLETION,
 } from '../constants';
-
-import { ITEM_COMPLETION } from '../actions/ItemCompletion';
 
 const INITIAL_STATE = {
   items: [],
@@ -17,6 +16,7 @@ const INITIAL_STATE = {
 const TodosReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case DELETE_ITEM:
+    case ITEM_COMPLETION:
     case REORDER_ITEM: {
       return { ...state, items: action.payload };
     }
@@ -40,18 +40,6 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
 
     case EDIT_ITEM: {
       return { ...state, items: action.payload, editingItem: {} };
-    }
-
-    case ITEM_COMPLETION: {
-      const items = state.items.map(item => {
-        if (item.id === action.payload.modifiedItem.id) {
-          item.completed = !item.completed;
-        }
-
-        return item;
-      });
-
-      return { ...state, items };
     }
 
     case SELECT_EDIT_ITEM: {
