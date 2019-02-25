@@ -4,11 +4,11 @@ import {
   EDIT_ITEM,
   SELECT_EDIT_ITEM,
   CANCEL_EDIT_ITEM,
-  DELETE_ITEM
+  DELETE_ITEM,
+  REORDER_ITEM
 } from '../constants';
 
 import { ITEM_COMPLETION } from '../actions/ItemCompletion';
-import { REORDER_ITEM } from '../actions/ReorderItem';
 
 const INITIAL_STATE = {
   items: [],
@@ -16,6 +16,11 @@ const INITIAL_STATE = {
 
 const TodosReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case DELETE_ITEM:
+    case REORDER_ITEM: {
+      return { ...state, items: action.payload };
+    }
+    
     case LOAD_STATE_LOCALSTORAGE: {
       if(action.payload){
         return { ...state, items: action.payload };
@@ -31,10 +36,6 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
     case CANCEL_EDIT_ITEM: {
       const newState = state.items.length ? { ...state, editingItem: {} } : { ...state };
       return newState;
-    }
-
-    case DELETE_ITEM: {
-      return { ...state, items: action.payload };
     }
 
     case EDIT_ITEM: {
@@ -55,14 +56,6 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
 
     case SELECT_EDIT_ITEM: {
       return { ...state, editingItem: action.payload };
-    }
-
-    case REORDER_ITEM: {
-      const clone = [...state.items];
-      const [removed] = clone.splice(action.payload.initialPosition, 1);
-      clone.splice(action.payload.newPosition, 0, removed);
-
-      return { ...state, items: clone };
     }
 
     default: {

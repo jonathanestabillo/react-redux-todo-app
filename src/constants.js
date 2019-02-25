@@ -7,3 +7,5 @@ export const EDIT_ITEM = 'Edit item';
 export const SELECT_EDIT_ITEM = 'Select edit item';
 export const CANCEL_EDIT_ITEM = 'Cancel edit item';
 export const DELETE_ITEM = 'Delete item';
+export const REORDER_ITEM = 'Reorder item';
+
