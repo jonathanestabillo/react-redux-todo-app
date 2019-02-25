@@ -1,13 +1,12 @@
 import {
   LOAD_STATE_LOCALSTORAGE,
-  ADD_ITEM
+  ADD_ITEM,
+  EDIT_ITEM,
+  SELECT_EDIT_ITEM
 } from '../constants';
 import { CANCEL_EDIT_ITEM } from '../actions/CancelEditItem';
 import { DELETE_ITEM } from '../actions/DeleteItem';
-import { EDIT_ITEM } from '../actions/EditItem';
 import { ITEM_COMPLETION } from '../actions/ItemCompletion';
-import { SELECT_EDIT_ITEM } from '../actions/SelectEditItem';
-//import { SAVE_STATE_LOCALSTORAGE } from '../actions/SaveStateLocalStorage';
 import { REORDER_ITEM } from '../actions/ReorderItem';
 
 const INITIAL_STATE = {
@@ -39,15 +38,7 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
     }
 
     case EDIT_ITEM: {
-      const items = state.items.map(item => {
-        if (item.id === action.payload.modifiedItem.id) {
-          item.value = action.payload.modifiedItem.value;
-        }
-
-        return item;
-      });
-
-      return { ...state, items, editingItem: {} };
+      return { ...state, items: action.payload, editingItem: {} };
     }
 
     case ITEM_COMPLETION: {
@@ -63,8 +54,7 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
     }
 
     case SELECT_EDIT_ITEM: {
-      const item = state.items.find(({ id }) => id === action.payload.id);
-      return { ...state, editingItem: item };
+      return { ...state, editingItem: action.payload };
     }
 
     case REORDER_ITEM: {
