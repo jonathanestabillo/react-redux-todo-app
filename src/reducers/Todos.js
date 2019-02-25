@@ -3,10 +3,10 @@ import {
   ADD_ITEM,
   EDIT_ITEM,
   SELECT_EDIT_ITEM,
-  CANCEL_EDIT_ITEM
+  CANCEL_EDIT_ITEM,
+  DELETE_ITEM
 } from '../constants';
 
-import { DELETE_ITEM } from '../actions/DeleteItem';
 import { ITEM_COMPLETION } from '../actions/ItemCompletion';
 import { REORDER_ITEM } from '../actions/ReorderItem';
 
@@ -34,8 +34,7 @@ const TodosReducer = (state = INITIAL_STATE, action) => {
     }
 
     case DELETE_ITEM: {
-      const items = state.items.filter(({ id }) => id !== action.payload.id);
-      return { ...state, items };
+      return { ...state, items: action.payload };
     }
 
     case EDIT_ITEM: {

@@ -1,6 +1,11 @@
-export const DELETE_ITEM = 'Delete item';
+import { DELETE_ITEM } from '../constants';
 
-export const DeleteItem = selectedItemId => ({
-  type: DELETE_ITEM,
-  payload: { id: selectedItemId },
-});
+export const DeleteItem = (selectedItemId) => {
+  return (dispatch, getState) => {
+    const items = getState().todos.items.filter(({ id }) => id !== selectedItemId);
+    dispatch({
+      type: DELETE_ITEM,
+      payload: items,
+    });
+  }
+}
