@@ -5,3 +5,4 @@ export const SAVE_STATE_LOCALSTORAGE = 'Saving state to Local Storage';
 export const ADD_ITEM = 'Add item';
 export const EDIT_ITEM = 'Edit item';
 export const SELECT_EDIT_ITEM = 'Select edit item';
+export const CANCEL_EDIT_ITEM = 'Cancel edit item';

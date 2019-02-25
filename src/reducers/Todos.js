@@ -2,9 +2,10 @@ import {
   LOAD_STATE_LOCALSTORAGE,
   ADD_ITEM,
   EDIT_ITEM,
-  SELECT_EDIT_ITEM
+  SELECT_EDIT_ITEM,
+  CANCEL_EDIT_ITEM
 } from '../constants';
-import { CANCEL_EDIT_ITEM } from '../actions/CancelEditItem';
+
 import { DELETE_ITEM } from '../actions/DeleteItem';
 import { ITEM_COMPLETION } from '../actions/ItemCompletion';
 import { REORDER_ITEM } from '../actions/ReorderItem';

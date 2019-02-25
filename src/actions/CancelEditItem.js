@@ -1,6 +1,10 @@
-export const CANCEL_EDIT_ITEM = 'Cancel edit item';
+import { CANCEL_EDIT_ITEM } from '../constants';
 
-export const CancelEditItem = () => ({
-  type: CANCEL_EDIT_ITEM,
-  payload: {},
-});
+export const CancelEditItem = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CANCEL_EDIT_ITEM,
+      payload: {},
+    });
+  }
+};
